@@ -1,7 +1,9 @@
 package com.example.tema2ciclodevida;
 
 import android.os.Bundle;
-
+import android.util.Log;
+import android.content.Intent;
+import android.net.Uri;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -15,10 +17,12 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main2);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+    }
+    protected void onStart(){
+        super.onStart();
+        Log.i("Ejemplo 2", "Estoy en on Start de la actividad 2");
+        Intent ejemplo=new Intent(Intent.ACTION_VIEW);
+        ejemplo.setData(Uri.parse("http:www.google.es"));
+        startActivity(ejemplo);
     }
 }

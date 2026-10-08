@@ -2,6 +2,8 @@ package com.example.tema2ciclodevida;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.content.Intent;
+import android.net.Uri;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy(){
         super.onDestroy();
         Log.i("Ejemplo", "Estoy en on Destroy");
+        Intent ejemplo = new Intent(this, MainActivity2.class);
+        startActivity(ejemplo);
     }
 
 }

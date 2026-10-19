@@ -7,9 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
-
+import android.widget.Switch;
+import android.widget.CompoundButton;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,6 +31,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        //Estos son los elementos que sugerirán
+        String[] opciones={"opcion1", "opcion2", "opcion3", "opcion4", "opcion5"};
+        AutoCompleteTextView textoLeido=findViewById(R.id.miTexto);
+        ArrayAdapter<String> adaptador= new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, opciones);
+        textoLeido.setAdapter(adaptador);
     }
 
     protected void onStart(){
@@ -31,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
         Button boton1= findViewById(R.id.button1);
         Button boton2= findViewById(R.id.button2);
         Button boton3= findViewById(R.id.button3);
+        CheckBox checkbox1=findViewById(R.id.checkbox1);
+        Spinner miSpinner=findViewById(R.id.miSpinner);
+        switch switch1=findViewById(R.id.switch1);
+
+        String[] valores= {"Star Wars", "Reservoir dogs", "El Club de la lucha", "Snach: Cerdos y Diamantes"};
+        miSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, valores));
         TextView miTexto=(TextView) findViewById(R.id.texto);
         miTexto.setText("Nuevo texto a mostrar");
         Animation miAnimacion= AnimationUtils.loadAnimation(this, R.anim.animacion);
@@ -60,5 +78,60 @@ public class MainActivity extends AppCompatActivity {
                 miTexto.clearAnimation();
             }
         });
+        miSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+           @Override
+           public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l){
+               System.out.println("Has seleccionado el valor: "+adapterView.getItemAtPosition(position));
+           }
+
+           @Override
+            public void onNothingSelected(AdapterView<?> adapterView){
+               System.out.println("No has seleccionado nada");
+           }
+        });
+        checkbox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+         @Override
+         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+             if (isChecked){
+                //Código seleccionado
+             }else{
+                //Código no seleccionado
+             }
+         }
+        });
+        switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+                if(isChecked){
+                    textViewStatus.setText("Estado: Encendido");
+                }else{
+                    textViewStatus.setText("Estado: Apagado");
+                }
+            }
+        });
     }
-}
+
+    public class Radio{
+        protected void onCreate(Bundle savedInstanceState){
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+            radioGroup=findViewById(R.id.radioGroup);
+            textViewResult=findViewById(R.id.textViewResult);
+
+            buttonCheck.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    int selectedId=radioGroup.getCheckedRadioButtonId();
+
+                    if(selectedId!=-1){
+                        RadioButton selectedRadioButton = findViewById(selectedId);
+                        String selectedOption=selectedRadioButton.getText().toString();
+                        textViewResult.setText("Seleccionado: "+selectedOption);
+                    }else{
+                        textViewResult.setText("No se ha seleccionado ninguna opción");
+                        }
+                    }
+                });
+            }
+        }
+    }

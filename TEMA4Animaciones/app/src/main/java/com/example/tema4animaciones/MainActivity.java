@@ -19,7 +19,8 @@ import android.widget.Switch;
 import android.widget.CompoundButton;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.widget.SeekBar;
+import android.widget.RatingBar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -45,11 +46,15 @@ public class MainActivity extends AppCompatActivity {
         Button boton3= findViewById(R.id.button3);
         CheckBox checkbox1=findViewById(R.id.checkbox1);
         Spinner miSpinner=findViewById(R.id.miSpinner);
-        switch switch1=findViewById(R.id.switch1);
-
+        Switch switch1=findViewById(R.id.switch1);
+        RatingBar ratingBar=findViewById(R.id.ratingBar);
+        TextView textViewRating=findViewById(R.id.textViewRating);
         String[] valores= {"Star Wars", "Reservoir dogs", "El Club de la lucha", "Snach: Cerdos y Diamantes"};
         miSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, valores));
         TextView miTexto=(TextView) findViewById(R.id.texto);
+        TextView textViewStatus=(TextView) findViewById(R.id.textViewStatus);
+        TextView textViewProgress=(TextView) findViewById(R.id.textViewProgress);
+        SeekBar seekBar=(SeekBar) findViewById(R.id.seekBar);
         miTexto.setText("Nuevo texto a mostrar");
         Animation miAnimacion= AnimationUtils.loadAnimation(this, R.anim.animacion);
         Animation animacionRotar=AnimationUtils.loadAnimation(this, R.anim.rotar);
@@ -109,9 +114,32 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-    }
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser){
+                textViewProgress.setText("Valor: "+progress);
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar){
+                System.out.println("Se ha tocado la seekbar");
+            }
 
-    public class Radio{
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar){
+                System.out.println("Se ha dejado de tocar la seekbar");
+            }
+
+        });
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                textViewRating.setText("Calificación: "+rating);
+            }
+        });
+    }
+}
+
+    /*public class Radio{
         protected void onCreate(Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
@@ -135,3 +163,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+     */

@@ -64,11 +64,14 @@ public class MainActivity extends AppCompatActivity {
         button0.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                String cero="0";
                 if (ceroAlaIzquierda){
+                    if(numeros.isEmpty()){
+                        numeros="0";
+                        txtViewNumeros.setText(numeros);
+                    }
                     return;
                 }
-                aniadirNumero(cero);
+                aniadirNumero("0");
                 txtViewNumeros.setText(numeros);
             }
         });
@@ -76,8 +79,10 @@ public class MainActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                String uno="1";
-                aniadirNumero(uno);
+                if (ceroAlaIzquierda && numeros.equals("0")) {
+                    numeros = "";
+                }
+                aniadirNumero("1");
                 txtViewNumeros.setText(numeros);
                 ceroAlaIzquierda=false;
             }
@@ -85,8 +90,10 @@ public class MainActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                String dos="2";
-                aniadirNumero(dos);
+                if (ceroAlaIzquierda && numeros.equals("0")) {
+                    numeros = "";
+                }
+                aniadirNumero("2");
                 txtViewNumeros.setText(numeros);
                 ceroAlaIzquierda=false;
             }
@@ -94,8 +101,10 @@ public class MainActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                String tres="3";
-                aniadirNumero(tres);
+                if (ceroAlaIzquierda && numeros.equals("0")) {
+                    numeros = "";
+                }
+                aniadirNumero("3");
                 txtViewNumeros.setText(numeros);
                 ceroAlaIzquierda=false;
             }
@@ -103,8 +112,10 @@ public class MainActivity extends AppCompatActivity {
         button4.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                String cuatro="4";
-                aniadirNumero(cuatro);
+                if (ceroAlaIzquierda && numeros.equals("0")) {
+                    numeros = "";
+                }
+                aniadirNumero("4");
                 txtViewNumeros.setText(numeros);
                 ceroAlaIzquierda=false;
             }
@@ -112,8 +123,10 @@ public class MainActivity extends AppCompatActivity {
         button5.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                String cinco="5";
-                aniadirNumero(cinco);
+                if (ceroAlaIzquierda && numeros.equals("0")) {
+                    numeros = "";
+                }
+                aniadirNumero("5");
                 txtViewNumeros.setText(numeros);
                 ceroAlaIzquierda=false;
             }
@@ -121,8 +134,10 @@ public class MainActivity extends AppCompatActivity {
         button6.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                String seis="6";
-                aniadirNumero(seis);
+                if (ceroAlaIzquierda && numeros.equals("0")) {
+                    numeros = "";
+                }
+                aniadirNumero("6");
                 txtViewNumeros.setText(numeros);
                 ceroAlaIzquierda=false;
             }
@@ -130,8 +145,10 @@ public class MainActivity extends AppCompatActivity {
         button7.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                String siete="7";
-                aniadirNumero(siete);
+                if (ceroAlaIzquierda && numeros.equals("0")) {
+                    numeros = "";
+                }
+                aniadirNumero("7");
                 txtViewNumeros.setText(numeros);
                 ceroAlaIzquierda=false;
             }
@@ -139,8 +156,10 @@ public class MainActivity extends AppCompatActivity {
         button8.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                String ocho="8";
-                aniadirNumero(ocho);
+                if (ceroAlaIzquierda && numeros.equals("0")) {
+                    numeros = "";
+                }
+                aniadirNumero("8");
                 txtViewNumeros.setText(numeros);
                 ceroAlaIzquierda=false;
             }
@@ -148,8 +167,10 @@ public class MainActivity extends AppCompatActivity {
         button9.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                String nueve="9";
-                aniadirNumero(nueve);
+                if (ceroAlaIzquierda && numeros.equals("0")) {
+                    numeros = "";
+                }
+                aniadirNumero("9");
                 txtViewNumeros.setText(numeros);
                 ceroAlaIzquierda=false;
             }
@@ -182,6 +203,7 @@ public class MainActivity extends AppCompatActivity {
                 numero1="";
                 operacion="";
                 txtViewNumeros.setText(numeros);
+                txtViewOperacion.setText("");
                 ceroAlaIzquierda=true;
                 operacionIniciada=false;
             }
@@ -194,8 +216,10 @@ public class MainActivity extends AppCompatActivity {
                     numeros=numeros.substring(0,numeros.length()-1);
                     txtViewNumeros.setText(numeros);
                 }
-                if(numeros.isEmpty()){
-                    ceroAlaIzquierda=true;
+                if (numeros.isEmpty() || numeros.equals("0")) {
+                    ceroAlaIzquierda = true;
+                } else {
+                    ceroAlaIzquierda = false;
                 }
             }
         });
@@ -262,7 +286,7 @@ public class MainActivity extends AppCompatActivity {
         buttonIgual.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                if(!numeros.isEmpty() && !numero1.isEmpty() && !operacion.isEmpty()){
+                if(!numeros.isEmpty() && !operacion.isEmpty()){
                     numero2=numeros;
 
                     n1=Float.parseFloat(numero1.replace(',','.'));
@@ -286,6 +310,11 @@ public class MainActivity extends AppCompatActivity {
                                 txtViewNumeros.setText("Error");
                                 numeros = "";
                                 operacionIniciada = false;
+                                numero1="";
+                                numero2="";
+                                operacion="";
+                                txtViewOperacion.setText("");
+                                ceroAlaIzquierda=true;
                                 return;
                             }
                             resultado = n1 / n2;
@@ -297,11 +326,13 @@ public class MainActivity extends AppCompatActivity {
                         numeros=String.valueOf(resultado).replace('.', ',');
                     }
                     txtViewNumeros.setText(numeros);
+                    txtViewOperacion.setText("");
 
                     numero1= numeros;
+                    numeros="";
                     operacion="";
                     operacionIniciada=false;
-                    ceroAlaIzquierda=false;
+                    ceroAlaIzquierda=true;
                 }
             }
         });
@@ -311,6 +342,4 @@ public class MainActivity extends AppCompatActivity {
     public void aniadirNumero(String numero){
         numeros= numeros+numero;
     }
-
-    //Mejoras: Hacer que se pueda seleccionar cero por su cuenta
 }

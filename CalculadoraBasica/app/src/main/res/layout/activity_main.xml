@@ -11,6 +11,14 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/txtViewOperacion"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:gravity="end|center_vertical"
+        android:textSize="18sp"
+        android:textColor="#888888"
+        />
+    <TextView
         android:id="@+id/txtViewNumeros"
         android:layout_width="match_parent"
         android:layout_height="50dp"

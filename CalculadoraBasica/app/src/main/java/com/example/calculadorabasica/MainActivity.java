@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         //Los componentes de la calculadora
         TextView txtViewNumeros=findViewById(R.id.txtViewNumeros);
+        TextView txtViewOperacion=findViewById(R.id.txtViewOperacion);
         Button button0= findViewById(R.id.button0);
         Button button1= findViewById(R.id.button1);
         Button button2= findViewById(R.id.button2);
@@ -208,6 +209,7 @@ public class MainActivity extends AppCompatActivity {
                   operacion="+";
                   numeros = "";
                   txtViewNumeros.setText("");
+                  txtViewOperacion.setText(numero1+operacion);
                   ceroAlaIzquierda=true;
                   operacionIniciada = true;
               }
@@ -221,6 +223,7 @@ public class MainActivity extends AppCompatActivity {
                     operacion="-";
                     numeros = "";
                     txtViewNumeros.setText("");
+                    txtViewOperacion.setText(numero1+operacion);
                     ceroAlaIzquierda=true;
                     operacionIniciada = true;
                 }
@@ -234,6 +237,7 @@ public class MainActivity extends AppCompatActivity {
                     operacion="*";
                     numeros = "";
                     txtViewNumeros.setText("");
+                    txtViewOperacion.setText(numero1+operacion);
                     ceroAlaIzquierda=true;
                     operacionIniciada = true;
                 }
@@ -247,6 +251,7 @@ public class MainActivity extends AppCompatActivity {
                     operacion="/";
                     numeros = "";
                     txtViewNumeros.setText("");
+                    txtViewOperacion.setText(numero1+operacion);
                     ceroAlaIzquierda=true;
                     operacionIniciada = true;
                 }
@@ -286,7 +291,11 @@ public class MainActivity extends AppCompatActivity {
                             resultado = n1 / n2;
                             break;
                     }
-                    numeros=String.valueOf(resultado).replace('.', ',');
+                    if(resultado==(long) resultado){
+                        numeros=String.valueOf((long) resultado);
+                    }else{
+                        numeros=String.valueOf(resultado).replace('.', ',');
+                    }
                     txtViewNumeros.setText(numeros);
 
                     numero1= numeros;

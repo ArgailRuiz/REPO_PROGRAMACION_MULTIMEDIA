@@ -12,6 +12,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+
+/*
+*Actualmente se reinicia la app cada vez que volteas el móvil y se pierde la operacion.
+*Como no se puntua ese fallo en la rubrica ni se ha dado en clase la forma de evitarlo he optado por no hacer nada al respecto
+*Pero Se podría corregir usando un metodo para almacenar los datos actuales de las variables "onDestroy" y cargarlas "onCreate"
+*/
 public class MainActivity extends AppCompatActivity {
 
     //Inicialización de variables usadas en el código

@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     boolean ceroAlaIzquierda=true;
 
     boolean operacionIniciada=false;
+    boolean resultadoMostrado=false;
 
     @Override
     //Se crea la aplicación
@@ -64,6 +65,11 @@ public class MainActivity extends AppCompatActivity {
         button0.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                if (resultadoMostrado) {
+                    numeros = "";
+                    resultadoMostrado = false;
+                    ceroAlaIzquierda = true;
+                }
                 if (ceroAlaIzquierda){
                     if(numeros.isEmpty()){
                         numeros="0";
@@ -79,6 +85,12 @@ public class MainActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+
+                if (resultadoMostrado) {
+                    numeros = "";
+                    resultadoMostrado = false;
+                    ceroAlaIzquierda = true;
+                }
                 if (ceroAlaIzquierda && numeros.equals("0")) {
                     numeros = "";
                 }
@@ -90,6 +102,11 @@ public class MainActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                if (resultadoMostrado) {
+                    numeros = "";
+                    resultadoMostrado = false;
+                    ceroAlaIzquierda = true;
+                }
                 if (ceroAlaIzquierda && numeros.equals("0")) {
                     numeros = "";
                 }
@@ -112,6 +129,11 @@ public class MainActivity extends AppCompatActivity {
         button4.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                if (resultadoMostrado) {
+                    numeros = "";
+                    resultadoMostrado = false;
+                    ceroAlaIzquierda = true;
+                }
                 if (ceroAlaIzquierda && numeros.equals("0")) {
                     numeros = "";
                 }
@@ -123,6 +145,11 @@ public class MainActivity extends AppCompatActivity {
         button5.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                if (resultadoMostrado) {
+                    numeros = "";
+                    resultadoMostrado = false;
+                    ceroAlaIzquierda = true;
+                }
                 if (ceroAlaIzquierda && numeros.equals("0")) {
                     numeros = "";
                 }
@@ -134,6 +161,11 @@ public class MainActivity extends AppCompatActivity {
         button6.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                if (resultadoMostrado) {
+                    numeros = "";
+                    resultadoMostrado = false;
+                    ceroAlaIzquierda = true;
+                }
                 if (ceroAlaIzquierda && numeros.equals("0")) {
                     numeros = "";
                 }
@@ -145,6 +177,11 @@ public class MainActivity extends AppCompatActivity {
         button7.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                if (resultadoMostrado) {
+                    numeros = "";
+                    resultadoMostrado = false;
+                    ceroAlaIzquierda = true;
+                }
                 if (ceroAlaIzquierda && numeros.equals("0")) {
                     numeros = "";
                 }
@@ -156,6 +193,11 @@ public class MainActivity extends AppCompatActivity {
         button8.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                if (resultadoMostrado) {
+                    numeros = "";
+                    resultadoMostrado = false;
+                    ceroAlaIzquierda = true;
+                }
                 if (ceroAlaIzquierda && numeros.equals("0")) {
                     numeros = "";
                 }
@@ -167,6 +209,11 @@ public class MainActivity extends AppCompatActivity {
         button9.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                if (resultadoMostrado) {
+                    numeros = "";
+                    resultadoMostrado = false;
+                    ceroAlaIzquierda = true;
+                }
                 if (ceroAlaIzquierda && numeros.equals("0")) {
                     numeros = "";
                 }
@@ -175,16 +222,21 @@ public class MainActivity extends AppCompatActivity {
                 ceroAlaIzquierda=false;
             }
         });
-        //la coma nos permite introducir cero o números inferiores, se autoregula comprobando que no haya más comas al pulsarlo
+        //la coma se autoregula comprobando que no haya más comas al pulsarlo
         buttonComa.setOnClickListener(new View.OnClickListener(){
             Character coma=',';
             public void onClick(View v){
+                if (resultadoMostrado) {
+                    numeros = "";
+                    resultadoMostrado = false;
+                    ceroAlaIzquierda = true;
+                }
                 for (int i=0; i<numeros.length();i++){
                     if (numeros.charAt(i) == coma){
                         return;
                     }
                 }
-                if (ceroAlaIzquierda){
+                if (numeros.isEmpty()||ceroAlaIzquierda){
                     numeros="0,";
                     txtViewNumeros.setText(numeros);
                     ceroAlaIzquierda=false;
@@ -228,9 +280,10 @@ public class MainActivity extends AppCompatActivity {
         buttonSumar.setOnClickListener(new View.OnClickListener(){
            @Override
            public void onClick(View v){
-              if(!numeros.isEmpty()) {
+              if(!numeros.isEmpty()||resultadoMostrado) {
                   numero1 = numeros;
                   operacion="+";
+                  resultadoMostrado=false;
                   numeros = "";
                   txtViewNumeros.setText("");
                   txtViewOperacion.setText(numero1+operacion);
@@ -242,9 +295,10 @@ public class MainActivity extends AppCompatActivity {
         buttonRestar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                if(!numeros.isEmpty()) {
+                if(!numeros.isEmpty()||resultadoMostrado) {
                     numero1 = numeros;
                     operacion="-";
+                    resultadoMostrado=false;
                     numeros = "";
                     txtViewNumeros.setText("");
                     txtViewOperacion.setText(numero1+operacion);
@@ -256,9 +310,10 @@ public class MainActivity extends AppCompatActivity {
         buttonMultiplicar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                if(!numeros.isEmpty()) {
+                if(!numeros.isEmpty()||resultadoMostrado) {
                     numero1 = numeros;
                     operacion="*";
+                    resultadoMostrado=false;
                     numeros = "";
                     txtViewNumeros.setText("");
                     txtViewOperacion.setText(numero1+operacion);
@@ -270,9 +325,10 @@ public class MainActivity extends AppCompatActivity {
         buttonDividir.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                if(!numeros.isEmpty()) {
+                if(!numeros.isEmpty()||resultadoMostrado) {
                     numero1 = numeros;
                     operacion="/";
+                    resultadoMostrado=false;
                     numeros = "";
                     txtViewNumeros.setText("");
                     txtViewOperacion.setText(numero1+operacion);
@@ -329,10 +385,10 @@ public class MainActivity extends AppCompatActivity {
                     txtViewOperacion.setText("");
 
                     numero1= numeros;
-                    numeros="";
                     operacion="";
                     operacionIniciada=false;
-                    ceroAlaIzquierda=true;
+                    resultadoMostrado=true;
+                    ceroAlaIzquierda=false;
                 }
             }
         });

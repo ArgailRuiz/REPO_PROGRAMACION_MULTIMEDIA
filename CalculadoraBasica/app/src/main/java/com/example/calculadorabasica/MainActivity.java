@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         button0.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                //Sí ya tuvieramos un resultado en pantalla, este if lo borra
                 if (resultadoMostrado) {
                     numeros = "";
                     resultadoMostrado = false;

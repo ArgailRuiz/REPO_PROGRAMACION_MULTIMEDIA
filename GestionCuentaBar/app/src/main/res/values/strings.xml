@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Bar Bill Manager</string>
+    <string name="hintCuenta">Enter your bill total</string>
+    <string name="propina">Tip</string>
+    <string name="porcentaje10">Tip percentage: 10%</string>
+    <string name="porcentajePropina">Tip percentage: %1$d%%</string>
+    <string name="metodoPago">Payment method</string>
+    <string name="efectivo">Cash</string>
+    <string name="tarjeta">Card</string>
+    <string name="calificacion">Service rating</string>
+    <string name="tooltipCalificacion">Rate your experience</string>
+    <string name="Total">Total</string>
+    <string name="errorVacio">Please enter the bill amount.</string>
+    <string name="errorNumero">Invalid numeric value.</string>
+    <string name="errorValor">The bill must be greater than zero.</string>
+    <string name="resultado">Bill: %1$s €\nTip: %2$s €\nTotal: %3$s €\nPayment method: %4$s\nService rating: %5$.1f/5</string>
+</resources>

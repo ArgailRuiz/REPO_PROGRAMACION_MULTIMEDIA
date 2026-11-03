@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Administrador de cuenta bar</string>
+    <string name="hintCuenta">Introduzca cuenta total</string>
+    <string name="propina">Propina</string>
+    <string name="porcentaje10">Porcentaje propina: 10%</string>
+    <string name="porcentajePropina">Porcentaje propina: %1$d%%</string>
+    <string name="metodoPago">Método de pago</string>
+    <string name="efectivo">Efectivo</string>
+    <string name="tarjeta">Tarjeta</string>
+    <string name="calificacion">Calificacion del servicio</string>
+    <string name="tooltipCalificacion">Califique su experiencia</string>
+    <string name="Total">Total</string>
+    <string name="errorVacio">Por favor introduzca el importe de su cuenta</string>
+    <string name="errorNumero">Valor númerico inválido</string>
+    <string name="errorValor">La cuenta no puede ser cero.</string>
+    <string name="resultado">Bill: %1$s €\nTip: %2$s €\nTotal: %3$s €\nPayment method: %4$s\nService rating: %5$.1f/5</string>
+</resources>

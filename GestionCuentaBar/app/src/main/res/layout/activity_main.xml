@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/editTextCuenta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hintCuenta"
+        android:inputType="numberDecimal"
+        />
+    <CheckBox
+        android:id="@+id/checkBoxPropina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/propina"
+        />
+    <SeekBar
+        android:id="@+id/seekBarPorcentajePropina"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:progress="10"
+        android:visibility="gone"
+        />
+    <TextView
+        android:id="@+id/textViewPorcentaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/porcentaje10"
+        android:visibility="gone"/>
+    <RadioGroup
+        android:id="@+id/radioGroupPago"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioButtonEfectivo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/efectivo"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/radioButtonTarjeta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tarjeta" />
+
+    </RadioGroup>
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:tooltipText="@string/tooltipCalificacion"
+        android:numStars="5"
+        android:stepSize="0.5"
+        />
+    <Button
+        android:id="@+id/botonTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Total"/>
+    <TextView
+        android:id="@+id/textViewResultado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        />
+
+</LinearLayout>

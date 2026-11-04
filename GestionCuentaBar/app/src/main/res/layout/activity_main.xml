@@ -17,6 +17,14 @@
         android:hint="@string/hintCuenta"
         android:inputType="numberDecimal"
         />
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextViewCamarero"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hintCamarero"
+        android:inputType="text"
+        android:completionThreshold="3"
+        />
     <CheckBox
         android:id="@+id/checkBoxPropina"
         android:layout_width="wrap_content"
@@ -35,7 +43,7 @@
         android:id="@+id/textViewPorcentaje"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/porcentaje10"
+        android:text="@string/porcentajeInicial"
         android:visibility="gone"/>
     <RadioGroup
         android:id="@+id/radioGroupPago"

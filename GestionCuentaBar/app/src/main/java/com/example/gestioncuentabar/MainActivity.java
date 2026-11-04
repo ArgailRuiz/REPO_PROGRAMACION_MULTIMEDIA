@@ -2,6 +2,10 @@ package com.example.gestioncuentabar;
 
 import android.os.Bundle;
 import android.graphics.Color;
+import java.text.DecimalFormat;
+
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
@@ -12,8 +16,6 @@ import android.widget.RadioGroup;
 import android.view.View;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,7 +34,12 @@ public class MainActivity extends AppCompatActivity {
         TextView textViewResultado = findViewById(R.id.textViewResultado);
         TextView textViewPorcentaje = findViewById(R.id.textViewPorcentaje);
         RadioGroup radioGroupPago = findViewById(R.id.radioGroupPago);
+        AutoCompleteTextView autoCompleteTextViewCamarero=findViewById((R.id.autoCompleteTextViewCamarero));
 
+        String[] camareros= {"Ana Ramirez", "Sancho Panza", "Mario Conde", "Dorako Malfoid"};
+
+        ArrayAdapter<String> adaptador=new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, camareros);
+        autoCompleteTextViewCamarero.setAdapter(adaptador);
         // Estado inicial barra porcentaje propina
         seekBarPorcentajePropina.setProgress(10);
         checkBoxPropina.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -52,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        textViewPorcentaje.setText(getString(R.string.porcentajePropina, progress));
+                        textViewPorcentaje.setText(getString(R.string.porcentajePropina)+progress+"%");
                     }
                     @Override
                     public void onStartTrackingTouch(SeekBar seekBar) {
@@ -82,8 +89,13 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
             // Comprobar que la cuenta sea mayor que cero
-            if (cuenta <= 0 || Double.isNaN(cuenta) || Double.isInfinite(cuenta)) {
+            if (cuenta <= 0) {
                 mostrarError(textViewResultado, R.string.errorValor);
+                return;
+            }
+            //Comprobar que se haya introducido nombre de camarero, condicional proporcionado por la IA
+            if(autoCompleteTextViewCamarero.getText().toString().trim().isEmpty()){
+                mostrarError(textViewResultado, R.string.errorCamarero);
                 return;
             }
             // Calcular la propina
@@ -103,19 +115,20 @@ public class MainActivity extends AppCompatActivity {
             }
             // Obtener la calificación del servicio
             float calificacion = ratingBar.getRating();
-            // Formatear los importes con dos decimales
-            String cuentaFormato = String.format(Locale.getDefault(), "%.2f", cuenta);
-            String propinaFormato = String.format(Locale.getDefault(), "%.2f", propina);
-            String totalFormato = String.format(Locale.getDefault(), "%.2f", total);
+            // Formatear los importes con dos decimales, esto del format lo saqué de la IA porque StringValueof no permitía operar con solo dos decimales
+            DecimalFormat formato = new DecimalFormat("0.00");
+
+            String cuentaFormato = formato.format(cuenta);
+            String propinaFormato = formato.format(propina);
+            String totalFormato = formato.format(total);
             // Mostrar el resultado
-            String resultado = getString(
-                    R.string.resultado,
-                    cuentaFormato,
-                    propinaFormato,
-                    totalFormato,
-                    metodoPago,
-                    calificacion
-            );
+            String resultado =
+                    getString(R.string.textoCuenta) + cuentaFormato + " €\n" +
+                            getString(R.string.textoPropina) + propinaFormato + " €\n" +
+                            getString(R.string.textoTotal) + totalFormato + " €\n" +
+                            getString(R.string.textoMetodo) + metodoPago + "\n" +
+                            getString(R.string.textoCalificacion) + calificacion + "/5.0\n"+
+                            getString(R.string.textoCamarero)+autoCompleteTextViewCamarero.getText();
             textViewResultado.setTextColor(Color.BLACK);
             textViewResultado.setText(resultado);
         });
